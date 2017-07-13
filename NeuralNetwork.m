@@ -36,10 +36,10 @@ classdef NeuralNetwork
         
         % Query the neural network.
         function outputs_out = test(obj, inputs)
-            hidden_in = obj.weights_inputs_hidden .* inputs;
+            hidden_in = obj.weights_inputs_hidden * inputs;
             hidden_out = obj.activation_function(hidden_in);
             
-            outputs_in = obj.weights_hidden_outputs .* hidden_out;
+            outputs_in = obj.weights_hidden_outputs * hidden_out;
             outputs_out = obj.activation_function(outputs_in);
         end
     end
