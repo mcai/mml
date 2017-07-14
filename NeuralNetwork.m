@@ -1,5 +1,5 @@
 % Neural network.
-classdef NeuralNetwork
+classdef NeuralNetwork < handle
     properties
         numInputs
         numHidden
@@ -62,4 +62,3 @@ classdef NeuralNetwork
         end
     end
 end
-
