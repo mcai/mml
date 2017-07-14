@@ -27,7 +27,7 @@ end
 [best_accuracy, best_accuracy_index] = max(accuracies);
 best_num_epochs = num_epochs_range(best_accuracy_index);
 
-fprintf("Best number of epochs: %.4f, best accuracy: %.4f\n", best_num_epochs, best_accuracy);
+fprintf('Best number of epochs: %.4f, best accuracy: %.4f\n', best_num_epochs, best_accuracy);
 
 %%
 plot(num_epochs_range, accuracies, '-o')

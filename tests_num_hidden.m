@@ -27,7 +27,7 @@ end
 [best_accuracy, best_accuracy_index] = max(accuracies);
 best_num_hidden = num_hidden_range(best_accuracy_index);
 
-fprintf("Best number of hidden nodes: %d, best accuracy: %.4f\n", best_num_hidden, best_accuracy);
+fprintf('Best number of hidden nodes: %d, best accuracy: %.4f\n', best_num_hidden, best_accuracy);
 
 %%
 plot(num_hidden_range, accuracies, '-o')

@@ -27,7 +27,7 @@ end
 [best_accuracy, best_accuracy_index] = max(accuracies);
 best_learning_rate = learning_rates_range(best_accuracy_index);
 
-fprintf("Best Learning rate: %.4f, best accuracy: %.4f\n", best_learning_rate, best_accuracy);
+fprintf('Best Learning rate: %.4f, best accuracy: %.4f\n', best_learning_rate, best_accuracy);
 
 %%
 plot(learning_rates_range, accuracies, '-o')
