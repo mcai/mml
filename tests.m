@@ -47,6 +47,6 @@ for i = 1:size(mnist_test, 1)
     scores(i, 1) = (predicted == actual);
 end
 
-acc = sum(scores == 1) / size(scores, 1);
+acc = mean(scores);
 
 fprintf("Accuracy: %.3f\n", acc);
