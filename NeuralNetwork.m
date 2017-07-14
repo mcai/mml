@@ -49,7 +49,7 @@ classdef NeuralNetwork < handle
         end
         
         % Test the neural network.
-        function r = test(nn, inputs)
+        function outputs_out = test(nn, inputs)
             inputs = inputs';
             
             hidden_in = nn.weights_inputs_hidden * inputs;
@@ -58,7 +58,7 @@ classdef NeuralNetwork < handle
             outputs_in = nn.weights_hidden_outputs * hidden_out;
             outputs_out = nn.activation_function(outputs_in);
             
-            r = outputs_out';
+            outputs_out = outputs_out';
         end
     end
 end

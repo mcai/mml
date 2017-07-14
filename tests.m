@@ -39,9 +39,9 @@ for i = 1:size(mnist_test, 1)
     targets = zeros(1, num_outputs) + 0.01;
     targets(1, mnist_test(i, 1) + 1) = 0.99;
     
-    predicted_targets = test(nn, inputs);
+    outputs = test(nn, inputs);
     
-    [~, predicted] = max(predicted_targets);
+    [~, predicted] = max(outputs);
     [~, actual] = max(targets);
      
     scores(i, 1) = (predicted == actual);
