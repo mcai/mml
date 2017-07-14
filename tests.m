@@ -10,9 +10,6 @@ nn = NeuralNetwork(num_inputs, num_hidden, num_outputs, learning_rate);
 
 disp(nn);
 
-% mnist_train = csvread('data/mnist_train_100.csv');
-% mnist_test = csvread('data/mnist_test_10.csv');
-
 disp('Loading data..')
 
 mnist_train = csvread('data/mnist_train.csv');
@@ -49,4 +46,4 @@ end
 
 acc = mean(scores);
 
-fprintf("Accuracy: %.3f\n", acc);
+fprintf("Accuracy: %.4f\n", acc);
