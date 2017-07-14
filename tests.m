@@ -1,5 +1,10 @@
 clear; clc; close all; format compact
 
+disp('Loading data..')
+
+mnist_train = csvread('data/mnist_train.csv');
+mnist_test = csvread('data/mnist_test.csv');
+
 num_inputs = 784;
 num_hidden = 100;
 num_outputs = 10;
@@ -9,11 +14,6 @@ learning_rate = 0.3;
 nn = NeuralNetwork(num_inputs, num_hidden, num_outputs, learning_rate);
 
 disp(nn);
-
-disp('Loading data..')
-
-mnist_train = csvread('data/mnist_train.csv');
-mnist_test = csvread('data/mnist_test.csv');
 
 disp('Training..')
 
