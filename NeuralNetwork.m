@@ -18,29 +18,47 @@ classdef NeuralNetwork
     
     methods
         % Initialize the neural network.
-        function obj = NeuralNetwork(numInputs, numHidden, numOutputs, learningRate)
-            obj.numInputs = numInputs;
-            obj.numHidden = numHidden;
-            obj.numOutputs = numOutputs;
-            obj.learningRate = learningRate;
+        function nn = NeuralNetwork(numInputs, numHidden, numOutputs, learningRate)
+            nn.numInputs = numInputs;
+            nn.numHidden = numHidden;
+            nn.numOutputs = numOutputs;
+            nn.learningRate = learningRate;
             
-            obj.weights_inputs_hidden = random('Normal', 0, power(obj.numHidden, -0.5), [obj.numHidden, obj.numInputs]);
-            obj.weights_hidden_outputs = random('Normal', 0, power(obj.numOutputs, -0.5), [obj.numOutputs, obj.numHidden]);
+            nn.weights_inputs_hidden = random('Normal', 0, power(nn.numHidden, -0.5), [nn.numHidden, nn.numInputs]);
+            nn.weights_hidden_outputs = random('Normal', 0, power(nn.numOutputs, -0.5), [nn.numOutputs, nn.numHidden]);
             
-            obj.activation_function = @logsig;
+            nn.activation_function = @logsig;
         end
         
         % Train the neural network.
-        function train(obj)
+        function train(nn, inputs, targets)
+            inputs = inputs';
+            targets = targets';
+            
+            hidden_in = nn.weights_inputs_hidden * inputs;
+            hidden_out = nn.activation_function(hidden_in);
+            
+            outputs_in = nn.weights_hidden_outputs * hidden_out;
+            outputs_out = nn.activation_function(outputs_in);
+            
+            outputs_errors = targets - outputs_out;
+            hidden_errors = nn.weights_hidden_outputs' * outputs_errors;
+            
+            nn.weights_hidden_outputs = nn.weights_hidden_outputs + nn.learningRate .* outputs_errors .* (1 - outputs_errors) * hidden_out';
+            nn.weights_inputs_hidden = nn.weights_inputs_hidden + nn.learningRate .* hidden_errors .* (1 - hidden_errors) * inputs';
         end
         
-        % Query the neural network.
-        function outputs_out = test(obj, inputs)
-            hidden_in = obj.weights_inputs_hidden * inputs;
-            hidden_out = obj.activation_function(hidden_in);
+        % Test the neural network.
+        function r = test(nn, inputs)
+            inputs = inputs';
             
-            outputs_in = obj.weights_hidden_outputs * hidden_out;
-            outputs_out = obj.activation_function(outputs_in);
+            hidden_in = nn.weights_inputs_hidden * inputs;
+            hidden_out = nn.activation_function(hidden_in);
+            
+            outputs_in = nn.weights_hidden_outputs * hidden_out;
+            outputs_out = nn.activation_function(outputs_in);
+            
+            r = outputs_out';
         end
     end
 end
