@@ -68,3 +68,8 @@ title('Learning Rate vs. Accuracy')
 xlabel('Learning Rate')
 ylabel('Accuracy')
 
+%%
+results = array2table([learning_rates, accuracies], 'VariableNames', {'learning_rate', 'accuracy'});
+
+writetable(results, 'results/learning_rate-accuracy.csv', 'Delimiter', ',', 'QuoteStrings', true)
+
