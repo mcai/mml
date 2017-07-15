@@ -28,14 +28,16 @@ function accuracy = train_and_test(train_data, test_data, num_inputs, num_hidden
 
         outputs = test(nn, inputs);
 
-        [~, predicted] = max(outputs);
-        [~, actual] = max(targets);
+        [~, output] = max(outputs);
+        [~, target] = max(targets);
+        
+        fprintf('Output: %d, target: %d, output == target: %d\n', output, target, output == target);
 
-        scores(i, 1) = (predicted == actual);
+        scores(i, 1) = (output == target);
     end
 
     accuracy = mean(scores);
 
-    fprintf('Number of hidden nodes: %d, Learning rate: %.4f, number of epochs: %d, accuracy: %.4f\n', num_hidden, learning_rate, num_epochs, accuracy);
+    fprintf('Number of hidden nodes: %d, learning rate: %.4f, number of epochs: %d, accuracy: %.4f\n', num_hidden, learning_rate, num_epochs, accuracy);
 end
 
