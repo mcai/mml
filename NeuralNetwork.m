@@ -22,7 +22,7 @@ classdef NeuralNetwork < handle
             
             self.learning_rate = learning_rate;
             
-            self.activation_function = @logsig;
+            self.activation_function = @sigmoid;
             
             self.weights_inputs_hidden = normrnd(0.0, power(self.num_hidden, -0.5), self.num_hidden, self.num_inputs);
             self.weights_hidden_outputs = normrnd(0.0, power(self.num_outputs, -0.5), self.num_outputs, self.num_hidden);
@@ -59,4 +59,8 @@ classdef NeuralNetwork < handle
             outputs_out = outputs_out';
         end
     end
+end
+
+function y = sigmoid(x)
+    y = 1 ./ (1 + exp(-x));
 end
